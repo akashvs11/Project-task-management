@@ -2,7 +2,7 @@
 
 import './App.css'
 import { useState,useEffect } from 'react'
-
+const API_BASE_URL = "https://project-task-management-backend-d7f4.onrender.com";
 function App() {
 const [task,setTask]=useState([])
 const [newTitle,setNewTile]=useState("");
@@ -20,7 +20,7 @@ const [loading,setLoading] = useState(false);
 const handleSubmit = async(e) =>{
   e.preventDefault();
   try{
-    const response = await fetch("http://localhost:5000/api/register",{
+    const response = await fetch("https://project-task-management-backend-d7f4.onrender.com//api/register",{
       method: "POST",
       headers:{
         "Content-Type":"application/json",
@@ -52,7 +52,7 @@ const handleLogin = async(e)=>{
   e.preventDefault();
   setLoading(true);
   try{
-    const response = await fetch("http://localhost:5000/api/login",{
+    const response = await fetch("https://project-task-management-backend-d7f4.onrender.com//api/login",{
       method:"POST",
       headers:{
         "Content-Type":"application/json",
@@ -100,7 +100,7 @@ alert("logged out successfully");
 useEffect(()=>{
  const token = localStorage.getItem("token");
  if(!token)return;
- fetch("http://localhost:5000/api/task",{
+ fetch("https://project-task-management-backend-d7f4.onrender.com//api/task",{
   headers:{"Authorization":`Bearer ${token}`}
  })
   .then((res)=>res.json())
@@ -116,7 +116,7 @@ const addTask = async()=>{
   if(!newTitle.trim()) return;
 
   const token = localStorage.getItem("token");
-  const response = await fetch("http://localhost:5000/api/task",{
+  const response = await fetch("https://project-task-management-backend-d7f4.onrender.com//api/task",{
     method: "POST",
       headers :{
         "Content-Type": "application/json",
@@ -139,7 +139,7 @@ else{
 
 const deleteTask = async(id)=>{
   const token = localStorage.getItem("token");
-  await fetch(`http://localhost:5000/api/task/${id}`,{
+  await fetch(`https://project-task-management-backend-d7f4.onrender.com//api/task/${id}`,{
     method:"DELETE",
     headers:{"Authorization":`Bearer ${token}`}
   })
@@ -154,7 +154,7 @@ setTask(filteredTask);
 
 const handleStatusChange = async(id,newStatus)=>{
   const token = localStorage.getItem("token");
-  const response = await fetch(`http://localhost:5000/api/task/${id}`,{
+  const response = await fetch(`https://project-task-management-backend-d7f4.onrender.com//api/task/${id}`,{
     method:'PUT',
     headers:{"Content-Type":"application/json",
       "Authorization":`Bearer ${token}`
@@ -175,7 +175,7 @@ const handleStatusChange = async(id,newStatus)=>{
 
 const handleIdeaNoteSave = async (taskId, noteText) => {
   const token = localStorage.getItem("token");
-  const response = await fetch(`http://localhost:5000/api/task/${taskId}`, {
+  const response = await fetch(`https://project-task-management-backend-d7f4.onrender.com//api/task/${taskId}`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
