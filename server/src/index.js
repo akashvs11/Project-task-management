@@ -12,7 +12,7 @@ app.use(express.json())
 
 
 
-mongoose.connect("mongodb://127.0.0.1:27017/collab-app")
+mongoose.connect(process.env.MONGO_URI||"mongodb://127.0.0.1:27017/collab-app")
 .then(()=>console.log("mongodb is connected"))
 .catch((err)=>console.log("sorry error occured in connection",err))
 
